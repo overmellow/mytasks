@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Update Task</div>
+  <div class="panel-body">
+	<form>
+	  <div class="form-group">
+	    <label>Name</label>
+	    <input type="text" class="form-control" placeholder="Name" ng-model="task.name">
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" ng-model="task.completed"> Completed
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-default" ng-click="updateTask(task)">Update Task</button>
+	</form>
+  <div>
+</div>

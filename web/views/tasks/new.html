@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">New Task</div>
+  <div class="panel-body">
+	<form>
+	  <div class="form-group">
+	    <label>Name</label>
+	    <input type="text" class="form-control" placeholder="Name" ng-model="newTask.name">
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" ng-model="newTask.completed"> Completed
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-default" ng-click="addTask(newTask)">Add Task</button>
+	</form>
+  <div>
+</div>

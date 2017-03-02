@@ -1,0 +1,12 @@
+<div class="alert alert-success" role="alert" ng-if="notification">{{notification}}</div>
+<div class="panel panel-default">
+  <div class="panel-heading">My Tasks
+  	<a href="#/tasks/new" class="btn btn-default btn-xs pull-right">New Task</a>
+	</div>
+
+	<ul class="list-group">
+		<a href="#/tasks/{{task._id}}" class="list-group-item" ng-repeat="task in tasks">{{task.name}}<span class="pull-right">{{task.completed}}</span></a>
+		
+	</ul>
+
+</div>

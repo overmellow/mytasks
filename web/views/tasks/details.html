@@ -1,0 +1,13 @@
+<div class="alert alert-success" role="alert" ng-if="notification">{{notification}}</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Task Details</div>
+  <div class="panel-body">
+	Name: {{task.name}} 
+	<br>
+	Completed: {{task.completed}}
+	<br><br>
+	<button class="btn btn-danger" ng-click="removeTask(task)">Delete Task</button>
+	<a href="#/tasks/{{task._id}}/update" class="btn btn-info">Update Task</a>
+  </div>			
+</div>
+
