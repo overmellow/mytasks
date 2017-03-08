@@ -5,7 +5,6 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{contact.email}}">
-
 <!--   <div class="list" > -->
     <br><br>
     <div id="" class="item item-input-inset">
@@ -20,8 +19,8 @@
   
    <ion-content class="padding">
     <!-- <img ng-src="{{chat.face}}" style="width: 64px; height: 64px"> -->
-      <div ng-repeat="message in messages">
-        <p>{{message.message}}</p>
+      <div class="message-div" ng-repeat="message in messages" ng-class="message.sender == user.id ? 'pull-right' : ''">
+        <span class="message-span" ng-class="message.sender == user.id ? 'my-message' : 'not-my-message'">{{message.message}}</span>
       </div>
     
   </ion-content> 

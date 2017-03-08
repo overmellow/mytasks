@@ -20,6 +20,7 @@ angular.module('starter.factories', [])
 		}
 	}	
 })
+
 .factory('AuthFactory', function($http, configuration){
 	return {
 		login: function(user){

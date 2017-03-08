@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.factories', 'starter.configuration'])
 
-.run(function($ionicPlatform, configuration,$rootScope) {
+.run(function($ionicPlatform, configuration,$rootScope, LSFactory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -24,7 +24,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $rootScope.socket = io.connect(configuration.apiUrl, {
     //query: 'token=' + LSFactory.getData('token')
     });
-  });
+
+    $rootScope.$on('$stateChangeStart', function (event, next) {
+      var token = LSFactory.getData('token');
+      
+      if (!token /*&& $location.$$path != '/signup'*/) {
+
+      //if (token && typeof $rootScope.currentUser === 'undefined') {
+        event.preventDefault();
+        $state.go($state.current, {}, {reload: true});
+      }
+    })
+  })
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -36,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'

@@ -47,6 +47,9 @@ angular.module('myApp')
 		},
 		signup: function(newUser){
 			return $http.post(configuration.apiUrl + 'signup', newUser);
+		},
+		updateProfile: function(user){
+			return $http.put(configuration.apiUrl + 'users/updateprofile', user);
 		}
 	}	
 })

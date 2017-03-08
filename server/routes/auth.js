@@ -38,7 +38,7 @@ router
         res.json({
           success: true,
           token: token,
-          user: {id: user._id, email: user.email, token: token}
+          user: {id: user._id, email: user.email, name: user.name, token: token}
         });
       }   
     }

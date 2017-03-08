@@ -1,0 +1,18 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Contacts</h1>
+    <div class="buttons">
+      <button class="button" ng-click="hideContacts()">My Contacts</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-button-right" ng-repeat="contact in contacts" type="item-text-wrap">
+        {{contact.email}}
+          <button class="button button-clear button-positive" ng-click="addToMyContacts(contact)">
+            <i class="icon ion-ios-plus-empty"></i>
+          </button> 
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

@@ -30,3 +30,13 @@ angular.module('myApp')
 		$location.path('/');
 		$window.location.reload();
 	})
+	.controller('profileCtrl', function($scope, $rootScope, AuthFactory, LSFactory, $location){
+		$scope.user = LSFactory.getData('currentUser', true)
+
+		$scope.updateProfile = function(user){
+			AuthFactory.updateProfile(user)
+				.then(function(err, res){
+					$location.path('/')
+				})
+		}				
+	})	

@@ -1,7 +1,12 @@
 <ion-view view-title="Conversations">
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="addContacts()">
+      <i class="icon ion-plus"></i> Add Contacts
+    </button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="contact in contacts" type="item-text-wrap" href="#/tab/conversations/{{contact.conversationId}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="contact in mycontacts" type="item-text-wrap" href="#/tab/conversations/{{contact.conversationId}}">
         <!-- <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p> -->

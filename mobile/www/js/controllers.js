@@ -68,22 +68,59 @@ angular.module('starter.controllers', [])
       })
     }
   $scope.logout = function(){
+    $scope.currentUser = {}
+    $scope.user = {}
     LSFactory.removeData('currentUser');
     LSFactory.removeData('token');
     $scope.showLogin()
   }   
 })
 
-.controller('conversationsCtrl', function($scope, LSFactory, $http, configuration, ContactFactory){
+.controller('conversationsCtrl', function($scope, LSFactory, $http, configuration, ContactFactory, $ionicModal, $state){
+
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/contacts.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.contactsModal = modal;
+  });
+
+  $scope.addContacts = function(){
+    $scope.contactsModal.show();
+    ContactFactory.getContacts()
+      .then(function(res){
+        $scope.contacts = res.data;
+        //$scope.notification = NotificationFactory.latestNotification();
+    })
+  }
+
+  $scope.addToMyContacts = function(contact){
+    ContactFactory.addToMyContacts(contact)
+      .then(function(res){       
+        ContactFactory.getMyContacts()
+        .then(function(res){
+          $scope.mycontacts = res.data;
+          $scope.hideContacts();
+        })
+        //$scope.mycontacts.push(contact)
+    })      
+  }  
+
+  $scope.hideContacts = function(){
+    $scope.contactsModal.hide();
+  }
 
   ContactFactory.getMyContacts()
     .then(function(res){
-      $scope.contacts = res.data;
+      $scope.mycontacts = res.data;
     })
 
   $scope.removeFromMyContacts = function(contact){
     ContactFactory.removeFromMyContacts(contact)
     .then(function(res){
+        $scope.mycontacts = $scope.mycontacts.filter(function(element){
+          return element != contact;
+        })
       //NotificationFactory.addNotification(res.data.message);
      // $location.path('/conversations');
     })      
@@ -134,32 +171,8 @@ angular.module('starter.controllers', [])
     })
   })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  //$scope.chats = Chats.all();
-  Chats.all()
-    .then(function(data){
-      $scope.chats = data.data;
-    })
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-
-})
-
-.controller('AccountCtrl', function($scope) {
+/*.controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
-});
+})*/;

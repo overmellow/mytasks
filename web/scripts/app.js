@@ -36,6 +36,10 @@ angular.module('myApp', ["ngRoute"])
 	.when("/contacts", {
 		templateUrl : "views/contacts/contacts.html",
 		controller : 'contactsCtrl'
+	})
+	.when("/profile", {
+		templateUrl : "views/auth/profile.html",
+		controller : 'profileCtrl'
 	})  
 	/*.when("/messages", {
 		templateUrl : "views/messages/message.html",

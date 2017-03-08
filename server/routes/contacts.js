@@ -4,10 +4,15 @@ var router = express.Router();
 var User = require('../models/user');
 var Conversation = require('../models/conversation');
 
+
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
 router
 // get all contacts
 .get('/', function(req, res) {
-  User.find().exec(function(err, users){
+  User.find().select({_id: 1, email: 1}).exec(function(err, users){
     users = users.filter(function(el){ return el._id != req.decoded._doc._id; });
     res.json(users);  
   })
