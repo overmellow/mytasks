@@ -4,7 +4,8 @@
   	  <a href="#/contacts" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-plus"></span> Add Contacts</a>
   </div>
 	<ul class="list-group">
-		<a class="list-group-item" ng-repeat="contact in contacts" href="#/conversations/{{contact.conversationId}}">{{contact.contactee.email}} 
+		<a class="list-group-item" ng-repeat="contact in contacts" href="#/conversations/{{contact.conversationId}}">
+		<span>{{contact.contactee.email}} <span class="badge">{{contact.conversationId}}</span></span>
 			<button class="btn btn-danger btn-xs pull-right" ng-click="removeFromMyContacts(contact)">
 				<span class="glyphicon glyphicon-minus"></span>
 				Remove From My Contacts

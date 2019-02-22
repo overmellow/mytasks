@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 .put('/updateprofile', function(req, res){
   User.findById(req.decoded._doc._id).exec(function(err, user){
     user.name = req.body.name;
-    //user.password = req.body.password;
+    user.password = req.body.password;
     user.save(function(err, todo){
       res.json({ success: true });
     })    
